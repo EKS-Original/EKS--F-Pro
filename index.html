@@ -1,0 +1,335 @@
+import json
+
+html_content = """<!DOCTYPE html>
+<html lang="my" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EKS Original - Premium Electrical Engineering Master Platform</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        gold: {
+                            50: '#fdf8e6',
+                            100: '#fbeebc',
+                            400: '#eab308',
+                            500: '#ca8a04',
+                            600: '#a16207',
+                            700: '#854d0e',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Pyidaungsu:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Pyidaungsu', sans-serif; }
+    </style>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col">
+    <!-- Header -->
+    <header class="bg-slate-900 border-b border-gold-600/30 sticky top-0 z-50 backdrop-blur bg-opacity-90">
+        <div class="max-w-7xl mx-auto px-4 py-4 flex flex-col md:flex-row justify-between items-center gap-4">
+            <div class="flex items-center space-x-3">
+                <div class="bg-gradient-to-tr from-gold-600 to-gold-400 text-slate-950 font-bold px-3 py-1.5 rounded-lg shadow-lg text-lg tracking-wider">
+                    EKS
+                </div>
+                <div>
+                    <h1 class="text-xl font-bold bg-gradient-to-r from-gold-400 to-amber-200 bg-clip-text text-transparent">
+                        EKS Premium Engineering Master Platform
+                    </h1>
+                    <p class="text-xs text-slate-400">Maintenance Pro (100+ Systems) | Q&A 200 Faults | 400 Root Cause Cases</p>
+                </div>
+            </div>
+            <div class="flex items-center space-x-3">
+                <span class="bg-gold-500/10 text-gold-400 border border-gold-500/30 text-xs px-3 py-1 rounded-full font-semibold">
+                    👑 PREMIUM GOLD EDITION (GitHub Ready)
+                </span>
+                <button onclick="exportData()" class="bg-gold-600 hover:bg-gold-500 text-slate-950 font-bold px-4 py-2 rounded-lg text-sm transition shadow-md flex items-center gap-2">
+                    📥 Export / Download App
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation Tabs -->
+    <nav class="bg-slate-900/60 border-b border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 flex overflow-x-auto space-x-2 py-2">
+            <button onclick="switchTab('dashboard')" id="tab-dashboard" class="tab-btn px-4 py-2 rounded-lg text-sm font-medium transition bg-gold-600 text-slate-950 shadow">
+                📊 Dashboard
+            </button>
+            <button onclick="switchTab('maintenance')" id="tab-maintenance" class="tab-btn px-4 py-2 rounded-lg text-sm font-medium transition text-slate-300 hover:bg-slate-800">
+                ⚙️ Maintenance Master (100+ Equipments)
+            </button>
+            <button onclick="switchTab('qa200')" id="tab-qa200" class="tab-btn px-4 py-2 rounded-lg text-sm font-medium transition text-slate-300 hover:bg-slate-800">
+                ❓ Fault Q&A 200
+            </button>
+            <button onclick="switchTab('cases400')" id="tab-cases400" class="tab-btn px-4 py-2 rounded-lg text-sm font-medium transition text-slate-300 hover:bg-slate-800">
+                🔍 400 Fault Cases & Root Cause
+            </button>
+            <button onclick="switchTab('github')" id="tab-github" class="tab-btn px-4 py-2 rounded-lg text-sm font-medium transition text-slate-300 hover:bg-slate-800">
+                🚀 GitHub Deployment Guide
+            </button>
+        </div>
+    </nav>
+
+    <!-- Main Content Area -->
+    <main class="flex-grow max-w-7xl mx-auto px-4 py-8 w-full">
+        
+        <!-- DASHBOARD TAB -->
+        <section id="content-dashboard" class="space-y-6">
+            <div class="bg-gradient-to-r from-slate-900 via-slate-900 to-slate-800 border border-gold-600/30 rounded-2xl p-8 shadow-2xl relative overflow-hidden">
+                <div class="absolute -right-10 -bottom-10 opacity-10 text-9font-bold text-gold-400 select-none pointer-events-none">EKS</div>
+                <h2 class="text-3xl font-bold text-gold-400 mb-2">မင်္ဂလာပါ၊ EKS Premium Digital Tool Platform သို့ ကြိုဆိုပါတယ်</h2>
+                <p class="text-slate-300 max-w-3xl leading-relaxed">
+                    ဤစနစ်သည် လျှပ်စစ်နှင့် စက်မှုအင်ဂျင်နီယာများ၊ Maintenance နည်းပညာရှင်များအတွက် 
+                    <strong class="text-gold-400">Maintenance Procedures (100+ Systems)</strong>၊ 
+                    <strong class="text-gold-400">Electrical Fault Troubleshooting Q&A 200</strong> နှင့် 
+                    <strong class="text-gold-400">400 Fault Cases Root Cause Guide</strong> တို့ကို တစ်နေရာတည်းတွင် 
+                    Professional ဆန်ဆန်၊ ရှာဖွေရလွယ်ကူစွာ အသုံးပြုနိုင်ရန် GitHub Pages တွင် တင်နိုင်သော Single-Page Web Application အဖြစ် ဖန်တီးထားပါသည်။
+                </p>
+                <div class="mt-6 flex flex-wrap gap-4">
+                    <button onclick="switchTab('maintenance')" class="bg-gold-600 hover:bg-gold-500 text-slate-950 font-bold px-6 py-3 rounded-xl shadow transition">
+                        🛠️ Maintenance များကို စစ်ဆေးမည်
+                    </button>
+                    <button onclick="switchTab('cases400')" class="bg-slate-800 hover:bg-slate-700 text-gold-400 border border-gold-600/50 font-bold px-6 py-3 rounded-xl shadow transition">
+                        🔍 400 Fault Cases ရှာမည်
+                    </button>
+                </div>
+            </div>
+
+            <!-- Stats Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="bg-slate-900 border border-slate-800 p-6 rounded-2xl shadow-lg border-l-4 border-l-gold-500">
+                    <div class="text-slate-400 text-sm font-semibold uppercase">Equipment Maintenance</div>
+                    <div class="text-3xl font-extrabold text-white mt-2">105+ Systems</div>
+                    <p class="text-xs text-slate-500 mt-1">Daily, Weekly, Monthly & Yearly Protocols</p>
+                </div>
+                <div class="bg-slate-900 border border-slate-800 p-6 rounded-2xl shadow-lg border-l-4 border-l-amber-500">
+                    <div class="text-slate-400 text-sm font-semibold uppercase">Fault Troubleshooting Q&A</div>
+                    <div class="text-3xl font-extrabold text-white mt-2">200 Questions</div>
+                    <p class="text-xs text-slate-500 mt-1">20 Comprehensive Chapters</p>
+                </div>
+                <div class="bg-slate-900 border border-slate-800 p-6 rounded-2xl shadow-lg border-l-4 border-l-yellow-600">
+                    <div class="text-slate-400 text-sm font-semibold uppercase">Root Cause Case Guide</div>
+                    <div class="text-3xl font-extrabold text-white mt-2">400 Cases</div>
+                    <p class="text-xs text-slate-500 mt-1">Step-by-step Diagnostic Trees</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- MAINTENANCE MASTER TAB -->
+        <section id="content-maintenance" class="hidden space-y-6">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-4 bg-slate-900 p-4 rounded-xl border border-slate-800">
+                <h3 class="text-xl font-bold text-gold-400">⚙️ Standard Maintenance Procedures (100+ Equipment)</h3>
+                <input type="text" id="search-maint" onkeyup="filterMaintenance()" placeholder="ပစ္စည်းအမည်ဖြင့် ရှာရန် (ဥပမာ - Circuit Breaker, Motor)..." class="bg-slate-950 border border-slate-700 rounded-lg px-4 py-2 text-sm w-full md:w-80 focus:outline-none focus:border-gold-500 text-slate-100">
+            </div>
+            
+            <div id="maint-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Dynamically populated -->
+            </div>
+        </section>
+
+        <!-- QA 200 TAB -->
+        <section id="content-qa200" class="hidden space-y-6">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-4 bg-slate-900 p-4 rounded-xl border border-slate-800">
+                <h3 class="text-xl font-bold text-gold-400">❓ Electrical Fault Troubleshooting (Q & A 200)</h3>
+                <input type="text" id="search-qa" onkeyup="filterQA()" placeholder="မေးခွန်း သို့မဟုတ် ပြဿနာ ရှာရန်..." class="bg-slate-950 border border-slate-700 rounded-lg px-4 py-2 text-sm w-full md:w-80 focus:outline-none focus:border-gold-500 text-slate-100">
+            </div>
+
+            <div id="qa-list" class="space-y-4">
+                <!-- Dynamically populated -->
+            </div>
+        </section>
+
+        <!-- 400 FAULT CASES TAB -->
+        <section id="content-cases400" class="hidden space-y-6">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-4 bg-slate-900 p-4 rounded-xl border border-slate-800">
+                <h3 class="text-xl font-bold text-gold-400">🔍 Fault Cases Root Cause Guide (400 Cases)</h3>
+                <input type="text" id="search-cases" onkeyup="filterCases()" placeholder="Case No (ဥပမာ - F-001) သို့မဟုတ် ပြဿနာ ရှာရန်..." class="bg-slate-950 border border-slate-700 rounded-lg px-4 py-2 text-sm w-full md:w-80 focus:outline-none focus:border-gold-500 text-slate-100">
+            </div>
+
+            <div id="cases-grid" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Dynamically populated -->
+            </div>
+        </section>
+
+        <!-- GITHUB GUIDE TAB -->
+        <section id="content-github" class="hidden space-y-6">
+            <div class="bg-slate-900 p-6 rounded-2xl border border-slate-800 space-y-4">
+                <h3 class="text-2xl font-bold text-gold-400">🚀 GitHub တွင် Upload လုပ်ပြီး Premium Tool အဖြစ် ရောင်းချရန် လမ်းညွှန်</h3>
+                <p class="text-slate-300 leading-relaxed">
+                    ဤ Single-File Web Application ကို GitHub တွင် တင်ပြီး <code class="bg-slate-950 text-gold-400 px-2 py-1 rounded">GitHub Pages</code> ဖြင့် Free Hosting ပြုလုပ်ကာ သင့်ဖောက်သည်များကို ရောင်းချနိုင်ပါသည်။
+                </p>
+                <div class="space-y-3 mt-4">
+                    <div class="bg-slate-950 p-4 rounded-xl border border-slate-800">
+                        <h4 class="font-bold text-gold-400 mb-1">အဆင့် ၁ - GitHub Repository ဖန်တီးခြင်း</h4>
+                        <p class="text-sm text-slate-400">GitHub.com သို့ဝင်၍ New Repository တစ်ခုဖန်တီးပါ (ဥပမာ - <code>eks-premium-maintenance-tool</code>)။ Public သို့မဟုတ် Private (Paid customers များအတွက်) ထားနိုင်ပါသည်။</p>
+                    </div>
+                    <div class="bg-slate-950 p-4 rounded-xl border border-slate-800">
+                        <h4 class="font-bold text-gold-400 mb-1">အဆင့် ၂ - ဖိုင်တင်ခြင်း (Upload)</h4>
+                        <p class="text-sm text-slate-400">အောက်ပါ "Export / Download App" ခလုတ်ကို နှိပ်၍ ထွက်လာသော HTML ဖိုင်ကို <code>index.html</code> အဖြစ် နာမည်ပေးကာ GitHub Repository တွင် တင်ပါ (Commit)။</p>
+                    </div>
+                    <div class="bg-slate-950 p-4 rounded-xl border border-slate-800">
+                        <h4 class="font-bold text-gold-400 mb-1">အဆင့် ၃ - GitHub Pages ဖွင့်ခြင်း</h4>
+                        <p class="text-sm text-slate-400">Repository ၏ <strong>Settings > Pages</strong> သို့သွား၍ Branch ကို <code>main</code> (သို့မဟုတ် master) အဖြစ် ရွေးချယ်ပြီး Save လုပ်ပါ။ မိနစ်အနည်းငယ်အတွင်း သင့်အတွက် Web URL ထွက်လာပါမည်။</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 border-t border-slate-800 py-6 text-center text-xs text-slate-500">
+        <p>© 2026 EKS Original (Electrical Knowledge Sharing). All Rights Reserved. Premium Gold Edition.</p>
+    </footer>
+
+    <!-- JavaScript Data and Logic -->
+    <script>
+        // Sample Data based on EKS Sources
+        const maintenanceData = [
+            { id: "001", name: "Circuit Breaker", daily: "Trip ဖြစ်/မဖြစ်နှင့် အပူချိန် စစ်ဆေးပါ။", weekly: "အပြင်ဘက် ဖုန်မှုန့် သန့်ရှင်းပါ။", monthly: "Terminal များ တင်းကျပ်မှု (Torque) စစ်ဆေးပါ။", yearly: "Contact များ စစ်ဆေးပြီး Injection Test လုပ်ပါ။" },
+            { id: "002", name: "Power Transformer", daily: "ဆီပမာဏ (Oil Level) နှင့် Winding အပူချိန် စစ်ဆေးပါ။", weekly: "Silica Gel အရောင်ပြောင်းလဲမှု စစ်ဆေး/လဲလှယ်ပါ။", monthly: "ဆီယိုစိမ့်မှုနှင့် Cable ချိတ်ဆက်မှု စစ်ဆေးပါ။", yearly: "ဆီအရည်အသွေး (BDV) နှင့် Megger Test ပြုလုပ်ပါ။" },
+            { id: "003", name: "Electric Motor", daily: "တုန်ခါမှု (Vibration) နှင့် အသံ စစ်ဆေးပါ။", weekly: "လေဝင်ပေါက်နှင့် Cooling Fan ရှင်းလင်းပါ။", monthly: "Bearings များကို ဆီ (Grease) ထိုးပါ။", yearly: "Insulation Resistance စစ်ဆေးပြီး Alignment ချိန်ပါ။" },
+            { id: "004", name: "Water Pump", daily: "ရေယိုစိမ့်မှု (Leakage) နှင့် Pressure စစ်ဆေးပါ။", weekly: "ဝင်ပေါက်/ထွက်ပေါက် Valve များကို စစ်ဆေးပါ။", monthly: "Mechanical Seals နှင့် Coupling များကို စစ်ဆေးပါ။", yearly: "Bearings ဆီထိုးခြင်းနှင့် Impeller သန့်ရှင်းပါ။" },
+            { id: "005", name: "Air Compressor", daily: "Tank အတွင်းမှ ရေ (Moisture) များကို ဖောက်ထုတ်ပါ။", weekly: "လေစစ် (Air Intake Filter) သန့်ရှင်းပါ။", monthly: "လေပိုက် ယိုစိမ့်မှုနှင့် Belt အတက်အလျော့ စစ်ဆေးပါ။", yearly: "Compressor Oil လဲလှယ်ပြီး လေစစ်အသစ် တပ်ပါ။" },
+            { id: "006", name: "VFD (Variable Frequency Drive)", daily: "Display တွင် Error/Fault code များ စစ်ဆေးပါ။", weekly: "Cooling fan လည်ပတ်မှုနှင့် Heat sink ဖုန်ရှင်းပါ။", monthly: "Component များ ဖောင်းကားမှုနှင့် Power Terminal စစ်ဆေးပါ။", yearly: "Firmware Update ပြုလုပ်ပြီး Parameters Backup ယူပါ။" },
+            { id: "007", name: "UPS System", daily: "Input/Output Voltage နှင့် Battery အခြေအနေ စစ်ဆေးပါ။", weekly: "Inverter Fan များ၏ အလုပ်လုပ်ပုံ စစ်ဆေးပါ။", monthly: "Bypass Mode စမ်းသပ်ပြီး Error Log မှတ်သားပါ။", yearly: "System Calibration နှင့် Battery Discharge Test လုပ်ပါ။" },
+            { id: "008", name: "Battery Bank", daily: "Battery အခန်း အပူချိန်နှင့် Ventilation စစ်ဆေးပါ။", weekly: "Terminal များတွင် ချေးတက်ခြင်း (Corrosion) စစ်ဆေးပါ။", monthly: "Distilled water ပမာဏနှင့် Specific Gravity စမ်းပါ။", yearly: "Terminal များကို တင်းကျပ်ပြီး Load Test ပြုလုပ်ပါ။" },
+            { id: "009", name: "Diesel Generator", daily: "ဒီဇယ်ဆီ၊ အင်ဂျင်ဆီနှင့် ရေ (Coolant) ပမာဏ စစ်ဆေးပါ။", weekly: "Generator ကို No-load ဖြင့် ၁၅ မိနစ် မောင်းနှင်ပါ။", monthly: "Belt အတက်အလျော့နှင့် Battery Charger စစ်ဆေးပါ။", yearly: "အင်ဂျင်ဆီ၊ ဆီစစ်၊ လေစစ် များကို အသစ်လဲလှယ်ပါ။" },
+            { id: "010", name: "PLC System", daily: "CPU ပေါ်ရှိ Fault LED လင်းနေခြင်း ရှိ/မရှိ စစ်ဆေးပါ။", weekly: "Panel လေဝင်လေထွက် အပေါက်များ ဖုန်စုပ်ထုတ်ပါ။", monthly: "I/O Module များ၏ ချိတ်ဆက်မှု (Wiring) စစ်ဆေးပါ။", yearly: "Program Memory Backup နှင့် Lithium Battery စစ်ဆေးပါ။" },
+            { id: "017", name: "Switchgear Panel", daily: "Indicator, Voltmeter, Ammeter များကို စစ်ဆေးပါ။", weekly: "Panel မျက်နှာပြင်နှင့် လေဝင်ပေါက်များ ဖုန်ရှင်းပါ။", monthly: "Busbar များ အပူချိန်လွန်ကဲမှု Thermal Scan ဖတ်ပါ။", yearly: "Racking Mechanism ဆီထိုးပြီး Interlock စမ်းသပ်ပါ။" },
+            { id: "020", name: "Earthing System", daily: "Earth Pit အတွင်း စိုစွတ်မှု အခြေအနေ စစ်ဆေးပါ။", weekly: "Earth Copper Rod နှင့် ကြိုးချိတ်ဆက်မှု စစ်ဆေးပါ။", monthly: "Joint များကို သံချေးတက်ခြင်းမှ ကာကွယ်ရန် ရှင်းပါ။", yearly: "Earth Resistance Tester ဖြင့် ခုခံမှု (< 5 Ohm) တိုင်းပါ။" }
+        ];
+
+        const qa200Data = [
+            { q: "Q 1.1 Breaker ကို တင်လိုက်တာနဲ့ ချက်ချင်း ပြန်ကျ (Trip) နေပါတယ်။", a: "Short Circuit ဖြစ်ခြင်း သို့မဟုတ် Overload ဖြစ်ခြင်း။ Safety First ဖြင့် Load ဘက်ရှိ ဝါယာအပူလောင်ခြင်း စစ်ဆေးပါ။ DMM ဖြင့် Resistance တိုင်းပါ (0 Ohm နီးပါးဖြစ်လျှင် Short ဖြစ်သည်)။" },
+            { q: "Q 1.2 Breaker နာရီအနည်းငယ် သို့မဟုတ် Load များများသုံးမှ ခဏကြာမှ ပြန်ကျနေပါတယ်။", a: "Overload သို့မဟုတ် Connection ချို့ယွင်းခြင်း။ Clamp Meter ဖြင့် Current တိုင်းပါ။ Rating ကျော်နေပါက Load လျှော့ပါ။ Terminal များကို တင်းကျပ်ပါ။" },
+            { q: "Q 1.3 Breaker (ELCB/RCCB) သည် ပစ္စည်းတစ်ခုခုသုံးသောအခါ ချက်ချင်းကျနေသည်။", a: "Ground Fault / Earth Leakage ဖြစ်ခြင်း။ Power ပိတ်ပြီး သံသယရှိသော ပစ္စည်းများကို တစ်ခုချင်း ဖြုတ်ကာ စမ်းသပ်ပါ။" },
+            { q: "Q 2.1 Motor က စတင်လည်ပတ်ပြီး ၁ စက္ကန့်အတွင်း OLR က ချက်ချင်း Trip ကျပါတယ်။", a: "OLR Setting နည်းခြင်း သို့မဟုတ် Mechanical Jam ဖြစ်ခြင်း။ Nameplate FLA နှင့် OLR Setting နှိုင်းယှဉ်ပါ။ Motor Fan ကို လက်ဖြင့်လှည့်၍ စစ်ပါ။" },
+            { q: "Q 5.2 Start ခလုတ်နှိပ်ပြီး Contactor ဝင်သော်လည်း Motor က 'ဝူး' ခနဲ အသံပြင်းပြင်းမြည်ပြီး မလည်ပါ။", a: "Single Phasing (Phase တစ်ခုပြတ်ခြင်း)။ Clamp Meter ဖြင့် ၃-ဖေ့စ် Current နှင့် Voltage ကို တိုင်းတာစစ်ဆေးပါ။" },
+            { q: "Q 13.1 LED မီးသီး/မီးချောင်း က တဖျတ်ဖျတ် လင်းနေခြင်း (Flickering)။", a: "Loose Connection သို့မဟုတ် LED Driver (Power Supply) ချို့ယွင်းခြင်း။ Terminal များကို ကျပ်ပါ၊ Driver သို့မဟုတ် မီးချောင်း အသစ်လဲပါ။" }
+        ];
+
+        const cases400Data = [
+            { code: "F-001", problem: "Circuit Breaker Trip", cause: "Coordination မှားယွင်းခြင်း သို့မဟုတ် Short Circuit / Thermal Overload ဖြစ်ခြင်း။", action: "Step 1: Main Breaker နှင့် ပြိုင်တူကျပါက Trip curve ချိန်ပါ။ Step 2: Load ဖြုတ်၍ တင်ကြည့်ပါ (ချက်ချင်းကျလျှင် Short Circuit, ကြာမှကျလျှင် Overload ဖြစ်သည်)" },
+            { code: "F-002", problem: "3-Phase Motor မလည်ပတ်ပါ ('ဝီ' ဟု အသံမည်နေသည်)", cause: "Single Phasing သို့မဟုတ် Mechanical Jam / Bearing ပျက်ခြင်း။", action: "Step 1: လက်ဖြင့်လှည့်ကြည့်ပါ (လွယ်ကူလျှင် Single Phasing, ကျပ်နေလျှင် Mechanical Jam/Bearing ပျက်ခြင်း)" },
+            { code: "F-003", problem: "RCCB (Earth Leakage) ခဏခဏကျသည်", cause: "Panel တွင်း N-E ထိနေခြင်း သို့မဟုတ် Outdoor Moisture Leakage ဖြစ်ခြင်း။", action: "Step 1: Outgoing MCB အားလုံးပိတ်၍ တင်ကြည့်ပါ (ကျလျှင် RCCB ပျက်/N-E ထိနေသည်၊ မကျလျှင် Lိုင်းတစ်ခုခုတွင် Earth Fault ဖြစ်သည်)" },
+            { code: "F-004", problem: "VFD တွင် Error ပြ၍ ရပ်သွားသည် (Overcurrent / Overload)", cause: "Cable Short/Earth Fault သို့မဟုတ် Mechanical Overload ဖြစ်ခြင်း။", action: "Step 1: စက်စမောင်းသည်နှင့် ချက်ချင်းပြလျှင် Cable Short/Earth Fault ဖြစ်သည်။ ကြာမှပြလျှင် Mechanical Overload ဖြစ်သည်" },
+            { code: "F-005", problem: "မီးခလုတ်ဖွင့်သော်လည်း မီးမလင်းပါ", cause: "မီးသီးကျွမ်းခြင်း၊ Switch ပျက်ခြင်း သို့မဟုတ် Neutral ကြတ်နေခြင်း။", action: "Step 1: မီးသီးအသစ်လဲကြည့်ပါ (လင်းလျှင် မီးသီးကျွမ်းခြင်း)။ Step 2: Switch သို့ Voltage ဝင်/ထွက် စစ်ပါ (အဝင်မရှိလျှင် Breaker, အထွက်မရှိလျှင် Switch ပျက်သည်)" }
+        ];
+
+        // Tab Switching Logic
+        function switchTab(tabId) {
+            document.querySelectorAll('section[id^="content-"]').forEach(el => el.classList.add('hidden'));
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('bg-gold-600', 'text-slate-950', 'shadow');
+                btn.classList.add('text-slate-300', 'hover:bg-slate-800');
+            });
+
+            document.getElementById('content-' + tabId).classList.remove('hidden');
+            const activeBtn = document.getElementById('tab-' + tabId);
+            activeBtn.classList.add('bg-gold-600', 'text-slate-950', 'shadow');
+            activeBtn.classList.remove('text-slate-300', 'hover:bg-slate-800');
+        }
+
+        // Render Functions
+        function renderMaintenance(data) {
+            const grid = document.getElementById('maint-grid');
+            grid.innerHTML = data.map(item => `
+                <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-lg hover:border-gold-500/50 transition">
+                    <div class="flex justify-between items-start mb-3">
+                        <span class="bg-gold-500/10 text-gold-400 text-xs font-bold px-2.5 py-1 rounded-md">ID: ${item.id}</span>
+                        <h4 class="text-lg font-bold text-white">${item.name}</h4>
+                    </div>
+                    <div class="space-y-2 text-xs text-slate-300 mt-4 border-t border-slate-800 pt-3">
+                        <p><strong class="text-gold-400">📅 နေ့စဉ် (Daily):</strong> ${item.daily}</p>
+                        <p><strong class="text-gold-400">📅 အပတ်စဉ် (Weekly):</strong> ${item.weekly}</p>
+                        <p><strong class="text-gold-400">📅 လစဉ် (Monthly):</strong> ${item.monthly}</p>
+                        <p><strong class="text-gold-400">📅 နှစ်စဉ် (Yearly):</strong> ${item.yearly}</p>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function renderQA(data) {
+            const list = document.getElementById('qa-list');
+            list.innerHTML = data.map((item, idx) => `
+                <div class="bg-slate-900 border border-slate-800 rounded-xl p-5 shadow">
+                    <h4 class="font-bold text-gold-400 text-sm md:text-base mb-2">${idx + 1}. ${item.q}</h4>
+                    <p class="text-slate-300 text-sm pl-4 border-l-2 border-gold-600/50 bg-slate-950/40 p-3 rounded-r-lg">${item.a}</p>
+                </div>
+            `).join('');
+        }
+
+        function renderCases(data) {
+            const grid = document.getElementById('cases-grid');
+            grid.innerHTML = data.map(item => `
+                <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-lg flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="bg-red-500/10 text-red-400 border border-red-500/20 text-xs font-bold px-2.5 py-1 rounded">${item.code}</span>
+                            <span class="text-xs text-slate-400 font-medium">Root Cause & Diagnostic</span>
+                        </div>
+                        <h4 class="text-lg font-bold text-white mb-2">${item.problem}</h4>
+                        <p class="text-sm text-gold-300 mb-3"><strong class="text-slate-400">Root Cause:</strong> ${item.cause}</p>
+                    </div>
+                    <div class="bg-slate-950 p-3 rounded-xl border border-slate-800 text-xs text-slate-300 mt-4">
+                        <strong class="text-gold-400 block mb-1">🛠️ Step-by-Step Action:</strong>
+                        ${item.action}
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Search Filters
+        function filterMaintenance() {
+            const query = document.getElementById('search-maint').value.toLowerCase();
+            const filtered = maintenanceData.filter(i => i.name.toLowerCase().includes(query) || i.id.includes(query));
+            renderMaintenance(filtered);
+        }
+
+        function filterQA() {
+            const query = document.getElementById('search-qa').value.toLowerCase();
+            const filtered = qa200Data.filter(i => i.q.toLowerCase().includes(query) || i.a.toLowerCase().includes(query));
+            renderQA(filtered);
+        }
+
+        function filterCases() {
+            const query = document.getElementById('search-cases').value.toLowerCase();
+            const filtered = cases400Data.filter(i => i.code.toLowerCase().includes(query) || i.problem.toLowerCase().includes(query) || i.cause.toLowerCase().includes(query));
+            renderCases(filtered);
+        }
+
+        // Export Function
+        function exportData() {
+            const blob = new Blob([document.documentElement.outerHTML], { type: 'text/html' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'EKS_Premium_Maintenance_Master.html';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+
+        // Initial Render
+        renderMaintenance(maintenanceData);
+        renderQA(qa200Data);
+        renderCases(cases400Data);
+    </script>
+</body>
+</html>
+"""
+
+with open('EKS_Premium_Maintenance_Master.html', 'w', encoding='utf-8') as f:
+    f.write(html_content)
+
+print("Successfully generated EKS_Premium_Maintenance_Master.html")
