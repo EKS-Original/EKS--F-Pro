@@ -82,14 +82,14 @@
         <!-- DASHBOARD TAB -->
         <section id="content-dashboard" class="space-y-6">
             <div class="bg-gradient-to-r from-slate-900 via-slate-900 to-slate-800 border border-gold-600/30 rounded-2xl p-8 shadow-2xl relative overflow-hidden">
-                <div class="absolute -right-10 -bottom-10 opacity-10 text-9font-bold text-gold-400 select-none pointer-events-none">EKS</div>
+                <div class="absolute -right-10 -bottom-10 opacity-10 text-9xl font-bold text-gold-400 select-none pointer-events-none">EKS</div>
                 <h2 class="text-3xl font-bold text-gold-400 mb-2">မင်္ဂလာပါ၊ EKS Premium Digital Tool Platform သို့ ကြိုဆိုပါတယ်</h2>
                 <p class="text-slate-300 max-w-3xl leading-relaxed">
                     ဤစနစ်သည် လျှပ်စစ်နှင့် စက်မှုအင်ဂျင်နီယာများ၊ Maintenance နည်းပညာရှင်များအတွက် 
                     <strong class="text-gold-400">Maintenance Procedures (100+ Systems)</strong>၊ 
                     <strong class="text-gold-400">Electrical Fault Troubleshooting Q&A 200</strong> နှင့် 
                     <strong class="text-gold-400">400 Fault Cases Root Cause Guide</strong> တို့ကို တစ်နေရာတည်းတွင် 
-                    Professional ဆန်ဆန်၊ ရှာဖွေရလွယ်ကူစွာ အသုံးပြုနိုင်ရန် GitHub Pages တွင် တင်နိုင်သော Single-Page Web Application အဖြစ် ဖန်တီးထားပါသည်။
+                    Professional ဆန်ဆန်၊ ရှာဖွေရလွယ်ကူစွာ အသုံးပြုနိုင်ရန် ဖန်တီးထားပါသည်။
                 </p>
                 <div class="mt-6 flex flex-wrap gap-4">
                     <button onclick="switchTab('maintenance')" class="bg-gold-600 hover:bg-gold-500 text-slate-950 font-bold px-6 py-3 rounded-xl shadow transition">
@@ -167,15 +167,15 @@
                 <div class="space-y-3 mt-4">
                     <div class="bg-slate-950 p-4 rounded-xl border border-slate-800">
                         <h4 class="font-bold text-gold-400 mb-1">အဆင့် ၁ - GitHub Repository ဖန်တီးခြင်း</h4>
-                        <p class="text-sm text-slate-400">GitHub.com သို့ဝင်၍ New Repository တစ်ခုဖန်တီးပါ (ဥပမာ - <code>eks-premium-maintenance-tool</code>)။ Public သို့မဟုတ် Private (Paid customers များအတွက်) ထားနိုင်ပါသည်။</p>
+                        <p class="text-sm text-slate-400">GitHub.com သို့ဝင်၍ New Repository တစ်ခုဖန်တီးပါ (ဥပမာ - <code>eks-premium-maintenance-tool</code>)။</p>
                     </div>
                     <div class="bg-slate-950 p-4 rounded-xl border border-slate-800">
                         <h4 class="font-bold text-gold-400 mb-1">အဆင့် ၂ - ဖိုင်တင်ခြင်း (Upload)</h4>
-                        <p class="text-sm text-slate-400">အောက်ပါ "Export / Download App" ခလုတ်ကို နှိပ်၍ ထွက်လာသော HTML ဖိုင်ကို <code>index.html</code> အဖြစ် နာမည်ပေးကာ GitHub Repository တွင် တင်ပါ (Commit)။</p>
+                        <p class="text-sm text-slate-400">ဤ HTML ကုဒ်ကို <code>index.html</code> အဖြစ် နာမည်ပေးကာ GitHub Repository တွင် တင်ပါ (Commit)။</p>
                     </div>
                     <div class="bg-slate-950 p-4 rounded-xl border border-slate-800">
                         <h4 class="font-bold text-gold-400 mb-1">အဆင့် ၃ - GitHub Pages ဖွင့်ခြင်း</h4>
-                        <p class="text-sm text-slate-400">Repository ၏ <strong>Settings > Pages</strong> သို့သွား၍ Branch ကို <code>main</code> (သို့မဟုတ် master) အဖြစ် ရွေးချယ်ပြီး Save လုပ်ပါ။ မိနစ်အနည်းငယ်အတွင်း သင့်အတွက် Web URL ထွက်လာပါမည်။</p>
+                        <p class="text-sm text-slate-400">Repository ၏ <strong>Settings > Pages</strong> သို့သွား၍ Branch ကို <code>main</code> အဖြစ် ရွေးချယ်ပြီး Save လုပ်ပါ။</p>
                     </div>
                 </div>
             </div>
@@ -190,7 +190,6 @@
 
     <!-- JavaScript Data and Logic -->
     <script>
-        // Sample Data based on EKS Sources
         const maintenanceData = [
             { id: "001", name: "Circuit Breaker", daily: "Trip ဖြစ်/မဖြစ်နှင့် အပူချိန် စစ်ဆေးပါ။", weekly: "အပြင်ဘက် ဖုန်မှုန့် သန့်ရှင်းပါ။", monthly: "Terminal များ တင်းကျပ်မှု (Torque) စစ်ဆေးပါ။", yearly: "Contact များ စစ်ဆေးပြီး Injection Test လုပ်ပါ။" },
             { id: "002", name: "Power Transformer", daily: "ဆီပမာဏ (Oil Level) နှင့် Winding အပူချိန် စစ်ဆေးပါ။", weekly: "Silica Gel အရောင်ပြောင်းလဲမှု စစ်ဆေး/လဲလှယ်ပါ။", monthly: "ဆီယိုစိမ့်မှုနှင့် Cable ချိတ်ဆက်မှု စစ်ဆေးပါ။", yearly: "ဆီအရည်အသွေး (BDV) နှင့် Megger Test ပြုလုပ်ပါ။" },
@@ -223,7 +222,6 @@
             { code: "F-005", problem: "မီးခလုတ်ဖွင့်သော်လည်း မီးမလင်းပါ", cause: "မီးသီးကျွမ်းခြင်း၊ Switch ပျက်ခြင်း သို့မဟုတ် Neutral ကြတ်နေခြင်း။", action: "Step 1: မီးသီးအသစ်လဲကြည့်ပါ (လင်းလျှင် မီးသီးကျွမ်းခြင်း)။ Step 2: Switch သို့ Voltage ဝင်/ထွက် စစ်ပါ (အဝင်မရှိလျှင် Breaker, အထွက်မရှိလျှင် Switch ပျက်သည်)" }
         ];
 
-        // Tab Switching Logic
         function switchTab(tabId) {
             document.querySelectorAll('section[id^="content-"]').forEach(el => el.classList.add('hidden'));
             document.querySelectorAll('.tab-btn').forEach(btn => {
@@ -237,7 +235,6 @@
             activeBtn.classList.remove('text-slate-300', 'hover:bg-slate-800');
         }
 
-        // Render Functions
         function renderMaintenance(data) {
             const grid = document.getElementById('maint-grid');
             grid.innerHTML = data.map(item => `
@@ -286,7 +283,6 @@
             `).join('');
         }
 
-        // Search Filters
         function filterMaintenance() {
             const query = document.getElementById('search-maint').value.toLowerCase();
             const filtered = maintenanceData.filter(i => i.name.toLowerCase().includes(query) || i.id.includes(query));
@@ -305,7 +301,6 @@
             renderCases(filtered);
         }
 
-        // Export Function
         function exportData() {
             const blob = new Blob([document.documentElement.outerHTML], { type: 'text/html' });
             const url = URL.createObjectURL(blob);
@@ -318,7 +313,6 @@
             URL.revokeObjectURL(url);
         }
 
-        // Initial Render
         renderMaintenance(maintenanceData);
         renderQA(qa200Data);
         renderCases(cases400Data);
