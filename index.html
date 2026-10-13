@@ -4,51 +4,124 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EKS Original - Premium Electrical Engineering Master Platform</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: {
-                    colors: {
-                        gold: {
-                            50: '#fdf8e6',
-                            100: '#fbeebc',
-                            400: '#eab308',
-                            500: '#ca8a04',
-                            600: '#a16207',
-                            700: '#854d0e',
-                        }
-                    }
-                }
-            }
-        }
-    </script>
     <link href="https://fonts.googleapis.com/css2?family=Pyidaungsu:wght@300;400;700&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Pyidaungsu', sans-serif; }
+        :root {
+            --bg-slate-950: #020617;
+            --bg-slate-900: #0f172a;
+            --bg-slate-800: #1e293b;
+            --bg-slate-700: #334155;
+            --text-slate-100: #f1f5f9;
+            --text-slate-300: #cbd5e1;
+            --text-slate-400: #94a3b8;
+            --text-slate-500: #64748b;
+            --gold-400: #eab308;
+            --gold-500: #ca8a04;
+            --gold-600: #a16207;
+            --gold-300: #fde047;
+            --red-400: #f87171;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Pyidaungsu', sans-serif; background-color: var(--bg-slate-950); color: var(--text-slate-100); min-height: 100vh; display: flex; flex-direction: column; }
+        
+        /* Layout Utilities */
+        .max-w-7xl { max-width: 80rem; margin-left: auto; margin-right: auto; }
+        .w-full { width: 100%; }
+        .flex { display: flex; }
+        .flex-col { flex-direction: column; }
+        .flex-grow { flex-grow: 1; }
+        .items-center { align-items: center; }
+        .justify-between { justify-content: space-between; }
+        .gap-2 { gap: 0.5rem; }
+        .gap-4 { gap: 1rem; }
+        .gap-6 { gap: 1.5rem; }
+        .space-x-2 > * + * { margin-left: 0.5rem; }
+        .space-x-3 > * + * { margin-left: 0.75rem; }
+        .space-y-4 > * + * { margin-top: 1rem; }
+        .space-y-6 > * + * { margin-top: 1.5rem; }
+        .grid { display: grid; }
+        .grid-cols-1 { grid-template-columns: repeat(1, minmax(0, 1fr)); }
+        
+        @media (min-width: 768px) {
+            .md\:flex-row { flex-direction: row; }
+            .md\:grid-cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+            .md\:grid-cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+            .md\:w-80 { width: 20rem; }
+        }
+        @media (min-width: 1024px) {
+            .lg\:grid-cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+        }
+
+        /* Styling Components */
+        header { background-color: var(--bg-slate-900); border-bottom: 1px solid rgba(161, 98, 7, 0.3); position: sticky; top: 0; z-index: 50; backdrop-filter: blur(8px); }
+        nav { background-color: rgba(15, 23, 42, 0.6); border-bottom: 1px solid var(--bg-slate-800); overflow-x: auto; }
+        main { padding: 2rem 1rem; flex-grow: 1; }
+        footer { background-color: var(--bg-slate-900); border-top: 1px solid var(--bg-slate-800); padding: 1.5rem; text-align: center; font-size: 0.75rem; color: var(--text-slate-500); }
+
+        .eks-logo { background: linear-gradient(135deg, var(--gold-600), var(--gold-400)); color: var(--bg-slate-950); font-weight: bold; padding: 0.375rem 0.75rem; border-radius: 0.5rem; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); font-size: 1.125rem; letter-spacing: 0.05em; }
+        .title-gradient { background: linear-gradient(to right, var(--gold-400), #fde68a); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: bold; }
+        
+        .badge-gold { background-color: rgba(202, 138, 4, 0.1); color: var(--gold-400); border: 1px solid rgba(202, 138, 4, 0.3); font-size: 0.75rem; padding: 0.25rem 0.75rem; border-radius: 9999px; font-weight: 600; display: inline-block; }
+        
+        .btn-gold { background-color: var(--gold-600); color: var(--bg-slate-950); font-weight: bold; padding: 0.5rem 1rem; border-radius: 0.5rem; font-size: 0.875rem; border: none; cursor: pointer; transition: background-color 0.2s; display: flex; align-items: center; gap: 0.5rem; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        .btn-gold:hover { background-color: var(--gold-500); }
+        
+        .tab-btn { padding: 0.5rem 1rem; border-radius: 0.5rem; font-size: 0.875rem; font-weight: 500; border: none; cursor: pointer; transition: all 0.2s; background: transparent; color: var(--text-slate-300); white-space: nowrap; }
+        .tab-btn:hover { background-color: var(--bg-slate-800); }
+        .tab-btn.active { background-color: var(--gold-600); color: var(--bg-slate-950); box-shadow: 0 1px 3px rgba(0,0,0,0.2); }
+
+        .card-box { background-color: var(--bg-slate-900); border: 1px solid var(--bg-slate-800); border-radius: 1rem; padding: 1.5rem; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.3); transition: border-color 0.2s; }
+        .card-box:hover { border-color: rgba(234, 179, 8, 0.5); }
+        
+        input[type="text"] { background-color: var(--bg-slate-950); border: 1px solid var(--bg-slate-700); border-radius: 0.5rem; padding: 0.5rem 1rem; font-size: 0.875rem; color: var(--text-slate-100); outline: none; transition: border-color 0.2s; }
+        input[type="text"]:focus { border-color: var(--gold-500); }
+
+        .hidden { display: none !important; }
+        .text-gold { color: var(--gold-400); }
+        .text-sm { font-size: 0.875rem; }
+        .text-xs { font-size: 0.75rem; }
+        .text-xl { font-size: 1.25rem; }
+        .text-2xl { font-size: 1.5rem; }
+        .text-3xl { font-size: 1.875rem; }
+        .font-bold { font-weight: bold; }
+        .font-extrabold { font-weight: 800; }
+        .mb-2 { margin-bottom: 0.5rem; }
+        .mb-3 { margin-bottom: 0.75rem; }
+        .mb-4 { margin-bottom: 1rem; }
+        .mt-1 { margin-top: 0.25rem; }
+        .mt-2 { margin-top: 0.5rem; }
+        .mt-4 { margin-top: 1rem; }
+        .mt-6 { margin-top: 1.5rem; }
+        .p-4 { padding: 1rem; }
+        .p-5 { padding: 1.25rem; }
+        .p-6 { padding: 1.5rem; }
+        .p-8 { padding: 2rem; }
+        .rounded-xl { border-radius: 0.75rem; }
+        .rounded-2xl { border-radius: 1rem; }
+        .border-l-gold { border-left: 4px solid var(--gold-500); }
+        .border-l-amber { border-left: 4px solid #f59e0b; }
+        .border-l-yellow { border-left: 4px solid #ca8a04; }
+        .bg-slate-950-40 { background-color: rgba(2, 6, 23, 0.4); }
     </style>
 </head>
-<body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col">
+<body>
     <!-- Header -->
-    <header class="bg-slate-900 border-b border-gold-600/30 sticky top-0 z-50 backdrop-blur bg-opacity-90">
-        <div class="max-w-7xl mx-auto px-4 py-4 flex flex-col md:flex-row justify-between items-center gap-4">
+    <header>
+        <div class="max-w-7xl px-4 py-4 flex flex-col md:flex-row justify-between items-center gap-4">
             <div class="flex items-center space-x-3">
-                <div class="bg-gradient-to-tr from-gold-600 to-gold-400 text-slate-950 font-bold px-3 py-1.5 rounded-lg shadow-lg text-lg tracking-wider">
-                    EKS
-                </div>
+                <div class="eks-logo">EKS</div>
                 <div>
-                    <h1 class="text-xl font-bold bg-gradient-to-r from-gold-400 to-amber-200 bg-clip-text text-transparent">
+                    <h1 class="text-xl title-gradient">
                         EKS Premium Engineering Master Platform
                     </h1>
-                    <p class="text-xs text-slate-400">Maintenance Pro (100+ Systems) | Q&A 200 Faults | 400 Root Cause Cases</p>
+                    <p class="text-xs" style="color: var(--text-slate-400);">Maintenance Pro (100+ Systems) | Q&A 200 Faults | 400 Root Cause Cases</p>
                 </div>
             </div>
             <div class="flex items-center space-x-3">
-                <span class="bg-gold-500/10 text-gold-400 border border-gold-500/30 text-xs px-3 py-1 rounded-full font-semibold">
+                <span class="badge-gold">
                     👑 PREMIUM GOLD EDITION (GitHub Ready)
                 </span>
-                <button onclick="exportData()" class="bg-gold-600 hover:bg-gold-500 text-slate-950 font-bold px-4 py-2 rounded-lg text-sm transition shadow-md flex items-center gap-2">
+                <button onclick="exportData()" class="btn-gold">
                     📥 Export / Download App
                 </button>
             </div>
@@ -56,46 +129,45 @@
     </header>
 
     <!-- Navigation Tabs -->
-    <nav class="bg-slate-900/60 border-b border-slate-800">
-        <div class="max-w-7xl mx-auto px-4 flex overflow-x-auto space-x-2 py-2">
-            <button onclick="switchTab('dashboard')" id="tab-dashboard" class="tab-btn px-4 py-2 rounded-lg text-sm font-medium transition bg-gold-600 text-slate-950 shadow">
+    <nav>
+        <div class="max-w-7xl px-4 flex space-x-2 py-2">
+            <button onclick="switchTab('dashboard')" id="tab-dashboard" class="tab-btn active">
                 📊 Dashboard
             </button>
-            <button onclick="switchTab('maintenance')" id="tab-maintenance" class="tab-btn px-4 py-2 rounded-lg text-sm font-medium transition text-slate-300 hover:bg-slate-800">
+            <button onclick="switchTab('maintenance')" id="tab-maintenance" class="tab-btn">
                 ⚙️ Maintenance Master (100+ Equipments)
             </button>
-            <button onclick="switchTab('qa200')" id="tab-qa200" class="tab-btn px-4 py-2 rounded-lg text-sm font-medium transition text-slate-300 hover:bg-slate-800">
+            <button onclick="switchTab('qa200')" id="tab-qa200" class="tab-btn">
                 ❓ Fault Q&A 200
             </button>
-            <button onclick="switchTab('cases400')" id="tab-cases400" class="tab-btn px-4 py-2 rounded-lg text-sm font-medium transition text-slate-300 hover:bg-slate-800">
+            <button onclick="switchTab('cases400')" id="tab-cases400" class="tab-btn">
                 🔍 400 Fault Cases & Root Cause
             </button>
-            <button onclick="switchTab('github')" id="tab-github" class="tab-btn px-4 py-2 rounded-lg text-sm font-medium transition text-slate-300 hover:bg-slate-800">
+            <button onclick="switchTab('github')" id="tab-github" class="tab-btn">
                 🚀 GitHub Deployment Guide
             </button>
         </div>
     </nav>
 
     <!-- Main Content Area -->
-    <main class="flex-grow max-w-7xl mx-auto px-4 py-8 w-full">
+    <main class="max-w-7xl w-full">
         
         <!-- DASHBOARD TAB -->
         <section id="content-dashboard" class="space-y-6">
-            <div class="bg-gradient-to-r from-slate-900 via-slate-900 to-slate-800 border border-gold-600/30 rounded-2xl p-8 shadow-2xl relative overflow-hidden">
-                <div class="absolute -right-10 -bottom-10 opacity-10 text-9xl font-bold text-gold-400 select-none pointer-events-none">EKS</div>
-                <h2 class="text-3xl font-bold text-gold-400 mb-2">မင်္ဂလာပါ၊ EKS Premium Digital Tool Platform သို့ ကြိုဆိုပါတယ်</h2>
-                <p class="text-slate-300 max-w-3xl leading-relaxed">
+            <div class="card-box" style="background: linear-gradient(to right, var(--bg-slate-900), var(--bg-slate-800)); position: relative; overflow: hidden;">
+                <h2 class="text-3xl text-gold mb-2">မင်္ဂလာပါ၊ EKS Premium Digital Tool Platform သို့ ကြိုဆိုပါတယ်</h2>
+                <p style="color: var(--text-slate-300); max-width: 48rem; line-height: 1.6;">
                     ဤစနစ်သည် လျှပ်စစ်နှင့် စက်မှုအင်ဂျင်နီယာများ၊ Maintenance နည်းပညာရှင်များအတွက် 
-                    <strong class="text-gold-400">Maintenance Procedures (100+ Systems)</strong>၊ 
-                    <strong class="text-gold-400">Electrical Fault Troubleshooting Q&A 200</strong> နှင့် 
-                    <strong class="text-gold-400">400 Fault Cases Root Cause Guide</strong> တို့ကို တစ်နေရာတည်းတွင် 
+                    <strong class="text-gold">Maintenance Procedures (100+ Systems)</strong>၊ 
+                    <strong class="text-gold">Electrical Fault Troubleshooting Q&A 200</strong> နှင့် 
+                    <strong class="text-gold">400 Fault Cases Root Cause Guide</strong> တို့ကို တစ်နေရာတည်းတွင် 
                     Professional ဆန်ဆန်၊ ရှာဖွေရလွယ်ကူစွာ အသုံးပြုနိုင်ရန် ဖန်တီးထားပါသည်။
                 </p>
                 <div class="mt-6 flex flex-wrap gap-4">
-                    <button onclick="switchTab('maintenance')" class="bg-gold-600 hover:bg-gold-500 text-slate-950 font-bold px-6 py-3 rounded-xl shadow transition">
+                    <button onclick="switchTab('maintenance')" class="btn-gold">
                         🛠️ Maintenance များကို စစ်ဆေးမည်
                     </button>
-                    <button onclick="switchTab('cases400')" class="bg-slate-800 hover:bg-slate-700 text-gold-400 border border-gold-600/50 font-bold px-6 py-3 rounded-xl shadow transition">
+                    <button onclick="switchTab('cases400')" style="background-color: var(--bg-slate-800); color: var(--gold-400); border: 1px solid rgba(234,179,8,0.5); padding: 0.5rem 1rem; border-radius: 0.5rem; font-weight: bold; cursor: pointer;">
                         🔍 400 Fault Cases ရှာမည်
                     </button>
                 </div>
@@ -103,79 +175,73 @@
 
             <!-- Stats Grid -->
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div class="bg-slate-900 border border-slate-800 p-6 rounded-2xl shadow-lg border-l-4 border-l-gold-500">
-                    <div class="text-slate-400 text-sm font-semibold uppercase">Equipment Maintenance</div>
-                    <div class="text-3xl font-extrabold text-white mt-2">105+ Systems</div>
-                    <p class="text-xs text-slate-500 mt-1">Daily, Weekly, Monthly & Yearly Protocols</p>
+                <div class="card-box border-l-gold">
+                    <div style="color: var(--text-slate-400);" class="text-sm font-bold">EQUIPMENT MAINTENANCE</div>
+                    <div class="text-3xl font-extrabold mt-2">105+ Systems</div>
+                    <p class="text-xs mt-1" style="color: var(--text-slate-500);">Daily, Weekly, Monthly & Yearly Protocols</p>
                 </div>
-                <div class="bg-slate-900 border border-slate-800 p-6 rounded-2xl shadow-lg border-l-4 border-l-amber-500">
-                    <div class="text-slate-400 text-sm font-semibold uppercase">Fault Troubleshooting Q&A</div>
-                    <div class="text-3xl font-extrabold text-white mt-2">200 Questions</div>
-                    <p class="text-xs text-slate-500 mt-1">20 Comprehensive Chapters</p>
+                <div class="card-box border-l-amber">
+                    <div style="color: var(--text-slate-400);" class="text-sm font-bold">FAULT TROUBLESHOOTING Q&A</div>
+                    <div class="text-3xl font-extrabold mt-2">200 Questions</div>
+                    <p class="text-xs mt-1" style="color: var(--text-slate-500);">20 Comprehensive Chapters</p>
                 </div>
-                <div class="bg-slate-900 border border-slate-800 p-6 rounded-2xl shadow-lg border-l-4 border-l-yellow-600">
-                    <div class="text-slate-400 text-sm font-semibold uppercase">Root Cause Case Guide</div>
-                    <div class="text-3xl font-extrabold text-white mt-2">400 Cases</div>
-                    <p class="text-xs text-slate-500 mt-1">Step-by-step Diagnostic Trees</p>
+                <div class="card-box border-l-yellow">
+                    <div style="color: var(--text-slate-400);" class="text-sm font-bold">ROOT CAUSE CASE GUIDE</div>
+                    <div class="text-3xl font-extrabold mt-2">400 Cases</div>
+                    <p class="text-xs mt-1" style="color: var(--text-slate-500);">Step-by-step Diagnostic Trees</p>
                 </div>
             </div>
         </section>
 
         <!-- MAINTENANCE MASTER TAB -->
         <section id="content-maintenance" class="hidden space-y-6">
-            <div class="flex flex-col md:flex-row justify-between items-center gap-4 bg-slate-900 p-4 rounded-xl border border-slate-800">
-                <h3 class="text-xl font-bold text-gold-400">⚙️ Standard Maintenance Procedures (100+ Equipment)</h3>
-                <input type="text" id="search-maint" onkeyup="filterMaintenance()" placeholder="ပစ္စည်းအမည်ဖြင့် ရှာရန် (ဥပမာ - Circuit Breaker, Motor)..." class="bg-slate-950 border border-slate-700 rounded-lg px-4 py-2 text-sm w-full md:w-80 focus:outline-none focus:border-gold-500 text-slate-100">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-4 card-box" style="padding: 1rem;">
+                <h3 class="text-xl text-gold">⚙️ Standard Maintenance Procedures (100+ Equipment)</h3>
+                <input type="text" id="search-maint" onkeyup="filterMaintenance()" placeholder="ပစ္စည်းအမည်ဖြင့် ရှာရန် (ဥပမာ - Circuit Breaker, Motor)..." class="w-full md:w-80">
             </div>
             
-            <div id="maint-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <!-- Dynamically populated -->
-            </div>
+            <div id="maint-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
         </section>
 
         <!-- QA 200 TAB -->
         <section id="content-qa200" class="hidden space-y-6">
-            <div class="flex flex-col md:flex-row justify-between items-center gap-4 bg-slate-900 p-4 rounded-xl border border-slate-800">
-                <h3 class="text-xl font-bold text-gold-400">❓ Electrical Fault Troubleshooting (Q & A 200)</h3>
-                <input type="text" id="search-qa" onkeyup="filterQA()" placeholder="မေးခွန်း သို့မဟုတ် ပြဿနာ ရှာရန်..." class="bg-slate-950 border border-slate-700 rounded-lg px-4 py-2 text-sm w-full md:w-80 focus:outline-none focus:border-gold-500 text-slate-100">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-4 card-box" style="padding: 1rem;">
+                <h3 class="text-xl text-gold">❓ Electrical Fault Troubleshooting (Q & A 200)</h3>
+                <input type="text" id="search-qa" onkeyup="filterQA()" placeholder="မေးခွန်း သို့မဟုတ် ပြဿနာ ရှာရန်..." class="w-full md:w-80">
             </div>
 
-            <div id="qa-list" class="space-y-4">
-                <!-- Dynamically populated -->
-            </div>
+            <div id="qa-list" class="space-y-4"></div>
         </section>
 
         <!-- 400 FAULT CASES TAB -->
         <section id="content-cases400" class="hidden space-y-6">
-            <div class="flex flex-col md:flex-row justify-between items-center gap-4 bg-slate-900 p-4 rounded-xl border border-slate-800">
-                <h3 class="text-xl font-bold text-gold-400">🔍 Fault Cases Root Cause Guide (400 Cases)</h3>
-                <input type="text" id="search-cases" onkeyup="filterCases()" placeholder="Case No (ဥပမာ - F-001) သို့မဟုတ် ပြဿနာ ရှာရန်..." class="bg-slate-950 border border-slate-700 rounded-lg px-4 py-2 text-sm w-full md:w-80 focus:outline-none focus:border-gold-500 text-slate-100">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-4 card-box" style="padding: 1rem;">
+                <h3 class="text-xl text-gold">🔍 Fault Cases Root Cause Guide (400 Cases)</h3>
+                <input type="text" id="search-cases" onkeyup="filterCases()" placeholder="Case No (ဥပမာ - F-001) သို့မဟုတ် ပြဿနာ ရှာရန်..." class="w-full md:w-80">
             </div>
 
-            <div id="cases-grid" class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <!-- Dynamically populated -->
-            </div>
+            <div id="cases-grid" class="grid grid-cols-1 md:grid-cols-2 gap-6"></div>
         </section>
 
         <!-- GITHUB GUIDE TAB -->
         <section id="content-github" class="hidden space-y-6">
-            <div class="bg-slate-900 p-6 rounded-2xl border border-slate-800 space-y-4">
-                <h3 class="text-2xl font-bold text-gold-400">🚀 GitHub တွင် Upload လုပ်ပြီး Premium Tool အဖြစ် ရောင်းချရန် လမ်းညွှန်</h3>
-                <p class="text-slate-300 leading-relaxed">
-                    ဤ Single-File Web Application ကို GitHub တွင် တင်ပြီး <code class="bg-slate-950 text-gold-400 px-2 py-1 rounded">GitHub Pages</code> ဖြင့် Free Hosting ပြုလုပ်ကာ သင့်ဖောက်သည်များကို ရောင်းချနိုင်ပါသည်။
+            <div class="card-box space-y-4">
+                <h3 class="text-2xl text-gold">🚀 GitHub တွင် Upload လုပ်ပြီး Premium Tool အဖြစ် ရောင်းချရန် လမ်းညွှန်</h3>
+                <p style="color: var(--text-slate-300); line-height: 1.6;">
+                    ဤ Single-File Web Application ကို GitHub တွင် တင်ပြီး <code style="background:var(--bg-slate-950); color:var(--gold-400); padding:0.2rem 0.4rem; border-radius:0.3rem;">GitHub Pages</code> ဖြင့် Free Hosting ပြုလုပ်ကာ သင့်ဖောက်သည်များကို ရောင်းချနိုင်ပါသည်။
                 </p>
-                <div class="space-y-3 mt-4">
-                    <div class="bg-slate-950 p-4 rounded-xl border border-slate-800">
-                        <h4 class="font-bold text-gold-400 mb-1">အဆင့် ၁ - GitHub Repository ဖန်တီးခြင်း</h4>
-                        <p class="text-sm text-slate-400">GitHub.com သို့ဝင်၍ New Repository တစ်ခုဖန်တီးပါ (ဥပမာ - <code>eks-premium-maintenance-tool</code>)။</p>
+                <div class="space-y-4 mt-4">
+                    <div style="background: var(--bg-slate-950); padding: 1rem; border-radius: 0.75rem; border: 1px solid var(--bg-slate-800);">
+                        <h4 class="text-gold mb-1 font-bold">အဆင့် ၁ - GitHub Repository ဖန်တီးခြင်း</h4>
+                        <p class="text-sm" style="color: var(--text-slate-400);">GitHub.com သို့ဝင်၍ New Repository တစ်ခုဖန်တီးပါ (ဥပမာ - <code>eks-premium-maintenance-tool</code>)။</p>
                     </div>
-                    <div class="bg-slate-950 p-4 rounded-xl border border-slate-800">
-                        <h4 class="font-bold text-gold-400 mb-1">အဆင့် ၂ - ဖိုင်တင်ခြင်း (Upload)</h4>
-                        <p class="text-sm text-slate-400">ဤ HTML ကုဒ်ကို <code>index.html</code> အဖြစ် နာမည်ပေးကာ GitHub Repository တွင် တင်ပါ (Commit)။</p>
+                    <div style="background: var(--bg-slate-950); padding: 1rem; border-radius: 0.75rem; border: 1px solid var(--bg-slate-800);">
+                        <h4 class="text-gold mb-1 font-bold">အဆင့် ၂ - ဖိုင်တင်ခြင်း (Upload)</h4>
+                        <p class="text-sm" style="color: var(--text-slate-400);">ဤကုဒ်အပြည့်အစုံကို <code>index.html</code> အဖြစ် နာမည်ပေးကာ GitHub Repository တွင် တင်ပါ (Commit)။</p>
                     </div>
-                    <div class="bg-slate-950 p-4 rounded-xl border border-slate-800">
-                        <h4 class="font-bold text-gold-400 mb-1">အဆင့် ၃ - GitHub Pages ဖွင့်ခြင်း</h4>
-                        <p class="text-sm text-slate-400">Repository ၏ <strong>Settings > Pages</strong> သို့သွား၍ Branch ကို <code>main</code> အဖြစ် ရွေးချယ်ပြီး Save လုပ်ပါ။</p>
+                    <div style="background: var(--bg-slate-950); padding: 1rem; border-radius: 0.75rem; border: 1px solid var(--bg-slate-800);">
+                        <h4 class="text-gold mb-1 font-bold">အဆင့် ၃ - GitHub Pages ဖွင့်ခြင်း</h4>
+                        <p class="text-sm" style="color: var(--text-slate-400);">Repository ၏ <strong>Settings > Pages</strong> သို့သွား၍ Branch ကို <code>main</code> အဖြစ် ရွေးချယ်ပြီး Save လုပ်ပါ။ မိနစ်အနည်းငယ်အတွင်း URL ထွက်လာပါမည်။</p>
                     </div>
                 </div>
             </div>
@@ -184,7 +250,7 @@
     </main>
 
     <!-- Footer -->
-    <footer class="bg-slate-900 border-t border-slate-800 py-6 text-center text-xs text-slate-500">
+    <footer>
         <p>© 2026 EKS Original (Electrical Knowledge Sharing). All Rights Reserved. Premium Gold Edition.</p>
     </footer>
 
@@ -223,31 +289,26 @@
         ];
 
         function switchTab(tabId) {
-            document.querySelectorAll('section[id^="content-"]').forEach(el => el.classList.add('hidden'));
-            document.querySelectorAll('.tab-btn').forEach(btn => {
-                btn.classList.remove('bg-gold-600', 'text-slate-950', 'shadow');
-                btn.classList.add('text-slate-300', 'hover:bg-slate-800');
-            });
+            document.querySelectorAll('main > section').forEach(el => el.classList.add('hidden'));
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
 
             document.getElementById('content-' + tabId).classList.remove('hidden');
-            const activeBtn = document.getElementById('tab-' + tabId);
-            activeBtn.classList.add('bg-gold-600', 'text-slate-950', 'shadow');
-            activeBtn.classList.remove('text-slate-300', 'hover:bg-slate-800');
+            document.getElementById('tab-' + tabId).classList.add('active');
         }
 
         function renderMaintenance(data) {
             const grid = document.getElementById('maint-grid');
             grid.innerHTML = data.map(item => `
-                <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-lg hover:border-gold-500/50 transition">
-                    <div class="flex justify-between items-start mb-3">
-                        <span class="bg-gold-500/10 text-gold-400 text-xs font-bold px-2.5 py-1 rounded-md">ID: ${item.id}</span>
-                        <h4 class="text-lg font-bold text-white">${item.name}</h4>
+                <div class="card-box">
+                    <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.75rem;">
+                        <span class="badge-gold">ID: ${item.id}</span>
+                        <h4 style="font-size: 1.125rem; font-weight: bold;">${item.name}</h4>
                     </div>
-                    <div class="space-y-2 text-xs text-slate-300 mt-4 border-t border-slate-800 pt-3">
-                        <p><strong class="text-gold-400">📅 နေ့စဉ် (Daily):</strong> ${item.daily}</p>
-                        <p><strong class="text-gold-400">📅 အပတ်စဉ် (Weekly):</strong> ${item.weekly}</p>
-                        <p><strong class="text-gold-400">📅 လစဉ် (Monthly):</strong> ${item.monthly}</p>
-                        <p><strong class="text-gold-400">📅 နှစ်စဉ် (Yearly):</strong> ${item.yearly}</p>
+                    <div style="font-size: 0.75rem; color: var(--text-slate-300); margin-top: 1rem; border-top: 1px solid var(--bg-slate-800); padding-top: 0.75rem;" class="space-y-2">
+                        <p><strong class="text-gold">📅 နေ့စဉ် (Daily):</strong> ${item.daily}</p>
+                        <p><strong class="text-gold">📅 အပတ်စဉ် (Weekly):</strong> ${item.weekly}</p>
+                        <p><strong class="text-gold">📅 လစဉ် (Monthly):</strong> ${item.monthly}</p>
+                        <p><strong class="text-gold">📅 နှစ်စဉ် (Yearly):</strong> ${item.yearly}</p>
                     </div>
                 </div>
             `).join('');
@@ -256,9 +317,9 @@
         function renderQA(data) {
             const list = document.getElementById('qa-list');
             list.innerHTML = data.map((item, idx) => `
-                <div class="bg-slate-900 border border-slate-800 rounded-xl p-5 shadow">
-                    <h4 class="font-bold text-gold-400 text-sm md:text-base mb-2">${idx + 1}. ${item.q}</h4>
-                    <p class="text-slate-300 text-sm pl-4 border-l-2 border-gold-600/50 bg-slate-950/40 p-3 rounded-r-lg">${item.a}</p>
+                <div class="card-box" style="padding: 1.25rem;">
+                    <h4 class="text-gold font-bold mb-2" style="font-size: 1rem;">${idx + 1}. ${item.q}</h4>
+                    <p style="font-size: 0.875rem; color: var(--text-slate-300); padding-left: 1rem; border-left: 2px solid var(--gold-600); background: rgba(2,6,23,0.4); padding: 0.75rem; border-radius: 0 0.5rem 0.5rem 0;">${item.a}</p>
                 </div>
             `).join('');
         }
@@ -266,17 +327,17 @@
         function renderCases(data) {
             const grid = document.getElementById('cases-grid');
             grid.innerHTML = data.map(item => `
-                <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-lg flex flex-col justify-between">
+                <div class="card-box" style="display: flex; flex-direction: column; justify-content: space-between;">
                     <div>
-                        <div class="flex items-center justify-between mb-3">
-                            <span class="bg-red-500/10 text-red-400 border border-red-500/20 text-xs font-bold px-2.5 py-1 rounded">${item.code}</span>
-                            <span class="text-xs text-slate-400 font-medium">Root Cause & Diagnostic</span>
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem;">
+                            <span style="background: rgba(248,113,113,0.1); color: var(--red-400); border: 1px solid rgba(248,113,113,0.2); font-size: 0.75rem; font-weight: bold; padding: 0.25rem 0.5rem; border-radius: 0.25rem;">${item.code}</span>
+                            <span style="font-size: 0.75rem; color: var(--text-slate-400);">Root Cause & Diagnostic</span>
                         </div>
-                        <h4 class="text-lg font-bold text-white mb-2">${item.problem}</h4>
-                        <p class="text-sm text-gold-300 mb-3"><strong class="text-slate-400">Root Cause:</strong> ${item.cause}</p>
+                        <h4 style="font-size: 1.125rem; font-weight: bold; margin-bottom: 0.5rem;">${item.problem}</h4>
+                        <p style="font-size: 0.875rem; color: var(--gold-300); margin-bottom: 0.75rem;"><strong style="color: var(--text-slate-400);">Root Cause:</strong> ${item.cause}</p>
                     </div>
-                    <div class="bg-slate-950 p-3 rounded-xl border border-slate-800 text-xs text-slate-300 mt-4">
-                        <strong class="text-gold-400 block mb-1">🛠️ Step-by-Step Action:</strong>
+                    <div style="background: var(--bg-slate-950); padding: 0.75rem; border-radius: 0.75rem; border: 1px solid var(--bg-slate-800); font-size: 0.75rem; color: var(--text-slate-300); margin-top: 1rem;">
+                        <strong class="text-gold" style="display: block; margin-bottom: 0.25rem;">🛠️ Step-by-Step Action:</strong>
                         ${item.action}
                     </div>
                 </div>
